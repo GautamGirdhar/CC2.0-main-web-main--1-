@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Here.css";
 
 import { Link } from "react-router-dom";
@@ -12,12 +12,11 @@ const LandingPage = () => {
     seconds: 0,
   });
 
-  // Set your registration end date here
-  const registrationEndDate = new Date("2025-03-31T23:59:59");
-
   // Update countdown timer
   useEffect(() => {
     const timer = setInterval(() => {
+      // Set your registration end date here
+      const registrationEndDate = new Date("2025-03-31T23:59:59");
       const now = new Date();
       const difference = registrationEndDate - now;
 
@@ -128,8 +127,8 @@ const LandingPage = () => {
               </p>
               <p className="card-text">
                 Our mission is to foster innovation, collaboration, and learning
-                in a competitive yet supportive environment. Whether you're a
-                seasoned developer or just starting your coding journey,
+                in a competitive yet supportive environment. Whether you&apos;re
+                a seasoned developer or just starting your coding journey,
                 CodeCrafters welcomes participants of all skill levels.
               </p>
             </div>
@@ -179,18 +178,18 @@ const LandingPage = () => {
           <div className="history-card">
             <p className="history-text">
               The concept of hackathons originated in the late 1990s. The term
-              "hackathon" is a combination of "hack" (exploratory programming)
-              and "marathon" (a long-distance running event). One of the first
-              known hackathons was organized by OpenBSD in Calgary in 1999,
-              where ten developers came together to avoid legal problems caused
-              by export regulations of cryptographic software from the United
-              States.
+              &quot;hackathon&quot; is a combination of &quot;hack&quot;
+              (exploratory programming) and &quot;marathon&quot; (a
+              long-distance running event). One of the first known hackathons
+              was organized by OpenBSD in Calgary in 1999, where ten developers
+              came together to avoid legal problems caused by export regulations
+              of cryptographic software from the United States.
             </p>
             <p className="history-text">
               In the early 2000s, companies like Yahoo! and Facebook began
               hosting internal hackathons to encourage innovation among their
-              employees. Facebook's "Like" button and Chat feature were both
-              developed during company hackathons.
+              employees. Facebook&apos;s &quot;Like&quot; button and Chat
+              feature were both developed during company hackathons.
             </p>
             <p className="history-text">
               Today, hackathons have evolved into global phenomena with
