@@ -145,6 +145,37 @@ input::placeholder {
   opacity: 0.6;
 }
 
+/* Accommodation Section Styling */
+.accommodation-section {
+  border-left-color: #9c27b0;
+}
+
+.accommodation-details {
+  margin-top: 15px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.accommodation-info {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+  background-color: #f8f0ff;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.accommodation-note {
+  font-size: 13px;
+  color: #777;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+.auto-calculated {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
 /* Button Styling */
 .primary-button {
   width: 100%;

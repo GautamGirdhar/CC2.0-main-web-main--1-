@@ -11,11 +11,16 @@ const TeamRegistrationForm = () => {
     contactNumber: "",
     college: "",
     program: "",
+    accommodationRequired: "No",
+    accommodationDetails: {
+      boysCount: 0,
+      girlsCount: 0,
+    },
     participants: [
-      { name: "", email: "" },
-      { name: "", email: "" },
-      { name: "", email: "" },
-      { name: "", email: "" },
+      { name: "", email: "", gender: "" },
+      { name: "", email: "", gender: "" },
+      { name: "", email: "", gender: "" },
+      { name: "", email: "", gender: "" },
     ],
   });
 
@@ -44,6 +49,21 @@ const TeamRegistrationForm = () => {
 
     // Update the form data state
     setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle accommodation details changes
+  const handleAccommodationChange = (field, value) => {
+    // Ensure value is within valid range (0 to team size)
+    const numValue = parseInt(value) || 0;
+    const validValue = Math.min(Math.max(numValue, 0), formData.teamSize);
+
+    setFormData({
+      ...formData,
+      accommodationDetails: {
+        ...formData.accommodationDetails,
+        [field]: validValue,
+      },
+    });
   };
 
   // Handle participant field changes
@@ -95,11 +115,16 @@ const TeamRegistrationForm = () => {
       contactNumber: "",
       college: "",
       program: "",
+      accommodationRequired: "No",
+      accommodationDetails: {
+        boysCount: 0,
+        girlsCount: 0,
+      },
       participants: [
-        { name: "", email: "" },
-        { name: "", email: "" },
-        { name: "", email: "" },
-        { name: "", email: "" },
+        { name: "", email: "", gender: "" },
+        { name: "", email: "", gender: "" },
+        { name: "", email: "", gender: "" },
+        { name: "", email: "", gender: "" },
       ],
     });
     setSubmitted(false);
@@ -146,6 +171,23 @@ const TeamRegistrationForm = () => {
               required
               placeholder={`Enter ${ordinalSuffix.toLowerCase()} participant's email`}
             />
+          </div>
+
+          <div className="form-group">
+            <label>Gender *</label>
+            <select
+              name={`participant${i + 1}Gender`}
+              value={formData.participants[i].gender}
+              onChange={(e) =>
+                handleParticipantChange(i, "gender", e.target.value)
+              }
+              required
+            >
+              <option value="">Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
         </div>
       );
@@ -209,7 +251,7 @@ const TeamRegistrationForm = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Contact Number*</label>
+                  <label>Contact Number Of Team Leader*</label>
                   <input
                     type="tel"
                     name="contactNumber"
@@ -277,6 +319,77 @@ const TeamRegistrationForm = () => {
               </div>
             </div>
 
+            <div className="form-section accommodation-section">
+              <h3>Accommodation Details</h3>
+              <div className="form-group">
+                <label>Accommodation Required*</label>
+                <select
+                  name="accommodationRequired"
+                  value={formData.accommodationRequired}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+
+              {formData.accommodationRequired === "Yes" && (
+                <div className="accommodation-details">
+                  <p className="accommodation-info">
+                    Please specify how many team members require accommodation:
+                  </p>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>Boys Requiring Accommodation</label>
+                      <input
+                        type="number"
+                        min="0"
+                        max={formData.teamSize}
+                        value={formData.accommodationDetails.boysCount}
+                        onChange={(e) =>
+                          handleAccommodationChange("boysCount", e.target.value)
+                        }
+                        className="editable-accommodation"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label>Girls Requiring Accommodation</label>
+                      <input
+                        type="number"
+                        min="0"
+                        max={formData.teamSize}
+                        value={formData.accommodationDetails.girlsCount}
+                        onChange={(e) =>
+                          handleAccommodationChange(
+                            "girlsCount",
+                            e.target.value
+                          )
+                        }
+                        className="editable-accommodation"
+                      />
+                    </div>
+                  </div>
+
+                  <p className="accommodation-note">
+                    Note: Accommodation will be arranged separately for boys and
+                    girls. The total should not exceed your team size of{" "}
+                    {formData.teamSize}.
+                  </p>
+
+                  {formData.accommodationDetails.boysCount +
+                    formData.accommodationDetails.girlsCount >
+                    formData.teamSize && (
+                    <p className="error-message">
+                      Error: Total accommodation count exceeds team size
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+
             <div className="form-footer">
               <p className="required-note">
                 * Required fields. Teams must have {formData.teamSize} members.
@@ -284,7 +397,13 @@ const TeamRegistrationForm = () => {
               <button
                 type="submit"
                 className="primary-button"
-                disabled={loading}
+                disabled={
+                  loading ||
+                  (formData.accommodationRequired === "Yes" &&
+                    formData.accommodationDetails.boysCount +
+                      formData.accommodationDetails.girlsCount >
+                      formData.teamSize)
+                }
               >
                 {loading ? "SUBMITTING..." : "REGISTER TEAM"}
               </button>
