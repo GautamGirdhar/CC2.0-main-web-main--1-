@@ -1,0 +1,184 @@
+/* General Container */
+.rules-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+/* Header Section */
+.rules-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.rules-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1a365d;
+  font-family: 'Oswald';
+}
+
+.rules-divider {
+  width: 80px;
+  height: 4px;
+  background-color: #3182ce;
+  margin: 0.5rem auto 1.5rem;
+}
+
+.rules-description {
+  color: #4a5568;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+ 
+}
+
+/* Rules Grid */
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Tablet View */
+@media (min-width: 768px) {
+  .rules-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Rules Card */
+.rules-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtitles */
+.rules-subtitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #2b6cb0;
+  margin-bottom: 1rem;
+  font-family:'Oswald';
+}
+
+/* Lists */
+.rules-list {
+  list-style: none;
+  padding: 0;
+}
+
+.rules-list li {
+  display: flex;
+  align-items: flex-start;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.rules-bullet {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #3182ce;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+/* Timeline */
+.rules-timeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Tablet View */
+@media (min-width: 768px) {
+  .rules-timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop View */
+@media (min-width: 1024px) {
+  .rules-timeline {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.rules-timeline-item {
+  border-left: 4px solid #3182ce;
+  padding-left: 1rem;
+}
+
+.rules-timeline-item h4 {
+  font-weight: bold;
+  color: #2b6cb0;
+}
+
+.rules-timeline-item p {
+  color: #4a5568;
+}
+
+/* Download Button */
+.rules-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Default Button Size */
+.rules-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 10px;
+  width: 30%;
+  margin:0.25rem;
+  background-color: #1e4e8c;
+  color: white;
+  font-weight: 500;
+  font-size: larger;
+  border-radius: 6px;
+  transition: background-color 0.3s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+
+/* Button Hover */
+.rules-download-btn:hover {
+  background-color: #1c3b6e;
+}
+
+/* Button Icon */
+.rules-icon {
+  margin-right: 8px;
+}
+
+/* 🔹 Mobile View Adjustments */
+@media (max-width: 480px) {
+  .rules-title {
+    font-size: 1.5rem;
+  }
+
+  .rules-description {
+    font-size: 0.9rem;
+  }
+
+  .rules-card {
+    padding: 1rem;
+  }
+
+  .rules-download-btn {
+    width: 80%; /* Make the button larger on smaller screens */
+    font-size: 14px;
+    padding-left:0.25rem;
+    padding-right:0.25rem;
+    margin:0.25rem;
+  }
+}
